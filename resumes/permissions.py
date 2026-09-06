@@ -34,6 +34,6 @@ class ResumePermission(BasePermission):
             return request.method in SAFE_METHODS
 
         if user.role and user.role.name == 'candidate':
-            return obj.user == user and request.method in ('GET', 'PUT', 'PATCH')
+            return obj.user == user and request.method in ('GET', 'PUT', 'PATCH', 'DELETE')
 
         return False

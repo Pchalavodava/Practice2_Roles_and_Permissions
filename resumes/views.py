@@ -11,9 +11,17 @@ class ResumeViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
+
+        if not user.is_authenticated:
+            return Resume.objects.none()
+
         if user.role and user.role.name == 'candidate':
             return Resume.objects.filter(user=user)
-        return Resume.objects.all()
+
+        if user.role and user.role.name in ('admin', 'hr'):
+            return Resume.objects.all()
+
+        return Resume.objects.none()
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
