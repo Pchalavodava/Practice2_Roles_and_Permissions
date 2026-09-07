@@ -11,3 +11,13 @@
 Настройте права доступа к API: кто может видеть, создавать, обновлять и удалять резюме — в зависимости от роли.
 
 Проверьте работу через `/api/resumes/` после настройки модели пользователя и авторизации.
+
+
+Первый запуск:
+1. Установить зависимости: pip install -r requirements.txt
+2. Выполнить миграции: python manage.py migrate
+3. Создать роли и разрешения: python manage.py setup_roles
+4. Создать администратора: python manage.py createsuperuser
+5. Запустить сервер: python manage.py runserver
+
+Для запуска тестов: python manage.py test
